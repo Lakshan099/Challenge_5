@@ -17,18 +17,18 @@ class SalaryCalculator {
         basicSalary = perDayPayment * noOfDays; // main thread cal the basic salary
 
         Thread thread2 = new Thread(() -> allowances = basicSalary * 0.05); // thread 2 cal the allowances
-        thread2.join();
+        thread2.join(); 
 
         Thread thread3 = new Thread(() -> { // thread 3 cal the epf
             double totalMonthlyEarnings = basicSalary + allowances;
             epf = totalMonthlyEarnings * 0.08;
 
-            employerContribution = totalMonthlyEarnings * 0.12;
+            employerContribution = totalMonthlyEarnings * 0.12; // cal employer Contribution
         });
         thread3.start();
-        thread3.join();
+        thread3.join(); 
 
-        finalSalary = basicSalary + allowances + epf;
+        finalSalary = basicSalary + allowances + epf; // main thread cal final Salary
     }
 
     public double getFinalSalary() {
